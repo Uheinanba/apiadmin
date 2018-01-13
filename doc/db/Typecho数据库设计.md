@@ -1,3 +1,5 @@
+https://github.com/typecho/typecho/blob/master/install/Mysql.sql
+
 ====== Typecho数据库设计 ======
 ===== 主体结构 =====
 
