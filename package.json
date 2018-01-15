@@ -23,6 +23,7 @@
     "pug": "^2.0.0-rc.1"
   },
   "devDependencies": {
+    "mongoose": "^4.13.9",
     "nodemon": "^1.8.1"
   }
 }
