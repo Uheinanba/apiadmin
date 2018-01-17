@@ -7,7 +7,7 @@
 启动mongodb之前需要新建一个mongodb默认的数据写入目录
 ```
   mkdir -p /data/db
-  sudo chmod -R 777 /data/db 
+  sudo chmod -R 777 /data/db
 ```
 - 启动mongodb服务
 ```
