@@ -4,11 +4,13 @@ import { Provider } from 'react-redux';
 import TodoContainers from './containers/TodoContainers';
 import configureStore from './redux/configureStore';
 
+import './assets/App.css';
+
 const store = configureStore();
 
 class App extends React.Component {
-  render(){
-    return(
+  render() {
+    return (
       <Provider store={store}>
         <TodoContainers />
       </Provider>
