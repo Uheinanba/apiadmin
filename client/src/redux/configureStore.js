@@ -1,17 +1,23 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import { createLogger } from 'redux-logger';
+import Immutable from 'immutable';
+import thunk from 'redux-thunk';
 import todo from './modules/todo';
+import jsapi from './modules/jsapi';
 
 const loggerMiddleware = createLogger();
 
-const createStoreWithMiddleware = applyMiddleware(loggerMiddleware)(
+const createStoreWithMiddleware = applyMiddleware(thunk, loggerMiddleware)(
   createStore,
-); // apply logger to redux
+);
 
 const reducer = combineReducers({
   todo,
+  jsapi,
 });
 
-const configureStore = initialState =>
-  createStoreWithMiddleware(reducer, initialState);
+const configureStore = (initialState = {}) =>
+  createStoreWithMiddleware(reducer, Immutable.fromJS(initialState));
+
 export default configureStore;
