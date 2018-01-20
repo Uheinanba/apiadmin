@@ -3,16 +3,16 @@ const _ = require('lodash');
 const path = require('path');
 const config = require('../config');
 
-let ctrls = {};
+let models = {};
 
-_.each(fs.readdirSync(config.controller), filename => {
+_.each(fs.readdirSync(config.model), filename => {
   if (filename === 'index.js' || filename.indexOf('.js') === -1) return false;
   try {
-    const ctrlName = filename.split('.')[0];
-    ctrls[ctrlName] = require(path.join(config.controller, filename));
+    const modelName = filename.split('.')[0];
+    models[modelName] = require(path.join(config.model, filename));
   } catch (error) {
     console.error(error);
   }
 });
 
-module.exports = ctrls;
+module.exports = models;

@@ -1,7 +1,7 @@
 const router = require('koa-router')();
-const { indexCtrl } = require('../controllers/index');
+const ctrls = require('../controllers/cate');
 
-router.get('/', indexCtrl);
+router.get('/', ctrls.indexCtrl);
 
 router.get('/string', async (ctx, next) => {
   ctx.body = 'koa2 string';

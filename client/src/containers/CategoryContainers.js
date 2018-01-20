@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Category from '../components/Category';
 import Creator from '../components/Creator';
-import { addCate } from '../redux/modules/jsapi';
+import { fetchCate } from '../redux/modules/jsapi';
 
 class CategoryContainers extends Component {
   handleCreate = () => {
@@ -10,7 +10,7 @@ class CategoryContainers extends Component {
   };
 
   componentWillMount = () => {
-    this.props.addCate();
+    this.props.fetchCate();
   };
 
   render() {
@@ -30,7 +30,7 @@ const mapStateToProps = ({ jsapi }, ownProps) => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    addCate: () => dispatch(addCate()),
+    fetchCate: () => dispatch(fetchCate()),
   };
 };
 

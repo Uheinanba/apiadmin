@@ -1,27 +1,40 @@
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/blog', { useMongoClient: true }) //连接上 myblog 数据库
-mongoose.Promise = global.Promise
+const db = require('../core/db');
+const Api = db.Api;
 
-const Schema = mongoose.Schema
-const apiSchema = new Schema({
-  version: {
-    type: String,
-    required: true,
+module.exports = {
+  addCate(data) {
+    return Api.create(data);
   },
-  order: Number,
+
+  findCateByVersion(version) {
+    return Api.findOne({ version }).exec();
+  },
+  addApi(data) {
+    const apis = new Api(data);
+  },
+};
+
+/* const apis = new Api({
+  version: '1.1',
+  order: 1,
   apis: [
     {
-      action: {
-        type: String,
-        required: true,
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-      list: Array,
+      action: 'contact.choose',
+      name: '1.0-通讯录接口',
+      list: [
+        {
+          title: '选择数据',
+          selectedDepartments: [1001],
+        },
+      ],
     },
   ],
-})
+});
 
-module.exports = mongoose.model('Api', apiSchema)
+apis.save((err, doc) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('great');
+  }
+}); */
