@@ -17,4 +17,16 @@ module.exports = [
     ctrl: 'api',
     handle: 'createApi',
   },
+  {
+    method: 'post',
+    url: '/api/deleteApi',
+    ctrl: 'api',
+    handle: 'deleteApi',
+  },
+  {
+    method: 'post',
+    url: '/api/updateApi',
+    ctrl: 'api',
+    handle: 'updateApi',
+  },
 ];

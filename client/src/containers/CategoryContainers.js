@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Category from '../components/Category';
 import Creator from '../components/Creator';
+import { Spin } from 'antd';
 import { fetchCate } from '../redux/modules/jsapi';
 
 class CategoryContainers extends Component {
@@ -16,7 +17,9 @@ class CategoryContainers extends Component {
   render() {
     return (
       <div>
-        <Category />
+        <Spin tip="加载中...">
+          <Category />
+        </Spin>
         <Creator onCreate={this.handleCreate} />
       </div>
     );
