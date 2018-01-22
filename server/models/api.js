@@ -15,11 +15,15 @@ module.exports = {
     return Api.findOne({ version }, { apis: 0 }).exec();
   },
 
-  addApi(id, data) {
+  getApis(id) {
+    return Api.findById(id);
+  },
+
+  addApi(id, apis) {
     return Api.findByIdAndUpdate(
       id,
       {
-        $push: { apis: data },
+        $push: { apis },
       },
       { runValidators: true },
     );

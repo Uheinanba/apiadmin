@@ -13,6 +13,12 @@ module.exports = [
   },
   {
     method: 'post',
+    url: '/api/getApis',
+    ctrl: 'api',
+    handle: 'getApis',
+  },
+  {
+    method: 'post',
     url: '/api/createApi',
     ctrl: 'api',
     handle: 'createApi',

@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 import TodoContainers from '../../containers/TodoContainers';
-// import JsapiContainers from '../../containers/JsapiContainers';
-import CategoryContainers from '../../containers/CategoryContainers';
+import CategoryContainer from '../../containers/CategoryContainer';
+import ApiContainer from '../../containers/ApiContainer';
 
 const { Content, Footer, Sider } = Layout;
 
-class SiderDemo extends Component {
+class Main extends Component {
   state = {
     collapsed: false,
   };
@@ -34,7 +34,7 @@ class SiderDemo extends Component {
             <Menu.Item key="1">
               <Icon type="pie-chart" />
               <span>数据管理</span>
-              <Link to={`/jsapi`} />
+              <Link to={`/cate`} />
             </Menu.Item>
             <Menu.Item key="2">
               <Icon type="desktop" />
@@ -51,8 +51,10 @@ class SiderDemo extends Component {
                 padding: 24,
                 minHeight: 360,
                 display: 'flex',
+                width: '100%',
               }}>
-              <Route exact path="/jsapi" component={CategoryContainers} />
+              <Route exact path="/cate" component={CategoryContainer} />
+              <Route exact path="/jsapi/:id" component={ApiContainer} />
               <Route exact path="/shell" component={TodoContainers} />
             </div>
           </Content>
@@ -65,4 +67,4 @@ class SiderDemo extends Component {
   }
 }
 
-export default SiderDemo;
+export default Main;

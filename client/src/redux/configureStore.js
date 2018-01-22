@@ -3,7 +3,8 @@ import { combineReducers } from 'redux-immutable';
 import { createLogger } from 'redux-logger';
 import Immutable from 'immutable';
 import thunk from 'redux-thunk';
-import todo from './modules/todo';
+
+import cate from './modules/cate';
 import jsapi from './modules/jsapi';
 
 const loggerMiddleware = createLogger();
@@ -13,7 +14,7 @@ const createStoreWithMiddleware = applyMiddleware(thunk, loggerMiddleware)(
 );
 
 const reducer = combineReducers({
-  todo,
+  cate,
   jsapi,
 });
 

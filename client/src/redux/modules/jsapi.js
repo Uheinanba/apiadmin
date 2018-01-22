@@ -1,58 +1,42 @@
+import { Map } from 'immutable';
+import _ from 'lodash';
 import apis from '../../core/service/apis';
-import { List, Map } from 'immutable';
 
-const ADD_CATE_SUCCESS = 'ADD_CATE_SUCCESS';
+const GET_APIS_SUCCESS = 'GET_APIS_SUCCESS';
 
-const GET_CATES_REQUEST = 'GET_CATES_REQUEST';
-const GET_CATES_SUCCESS = 'GET_CATES_SUCCESS';
-const GET_CATES_ERROR = 'GET_CATES_ERROR';
+const ADD_APIS_SUCCESS = 'ADD_APIS_SUCCESS';
 
 const initState = Map({
-  addCateStatus: '',
-  getCateStatus: '',
-  cates: [],
+  apis: [],
 });
 
-export const successAddCate = () => ({
-  type: ADD_CATE_SUCCESS,
-});
-
-export const requestGetCates = () => ({
-  type: GET_CATES_REQUEST,
-});
-export const successGetCates = payload => ({
-  type: GET_CATES_SUCCESS,
+export const successGetApis = payload => ({
+  type: GET_APIS_SUCCESS,
   payload,
 });
-export const errorGetCates = payload => ({
-  type: GET_CATES_ERROR,
+
+export const successAddApi = payload => ({
+  type: ADD_APIS_SUCCESS,
+  payload,
 });
 
-export const addCate = () => async dispatch => {
-  dispatch(requestGetCates());
-  try {
-    const created = await apis.createCate();
-    dispatch(successAddCate());
-  } catch (error) {
-    dispatch(errorGetCates());
-  }
+/* 获取jsapi列表 */
+export const fetchApis = id => async dispatch => {
+  const cates = await apis.getApis({ data: { id } });
+  return dispatch(successGetApis(cates));
 };
 
-export const fetchCate = () => async dispatch => {
-  const cates = await apis.getCates();
-  return dispatch(successGetCates(), cates);
+export const addApi = data => async dispatch => {
+  await apis.createApi({ data });
+  return dispatch(successAddApi());
 };
 
 export default (state = initState, action) => {
   switch (action.type) {
-    case ADD_CATE_SUCCESS:
-      return state.set('addCateStatus', 'success');
-    case GET_CATES_REQUEST:
-      return state.set({ getCateStatus: 'request' });
-    case GET_CATES_SUCCESS:
-      return state.set({ cates: action.payload, getCateStatus: 'success' });
-    case GET_CATES_ERROR:
-      return state.set({ getCateStatus: 'error' });
+    case GET_APIS_SUCCESS:
+      return state.set('apis', action.payload);
+    // state.merge({ apis: action.payload });
+    case ADD_APIS_SUCCESS:
     default:
       return state;
   }

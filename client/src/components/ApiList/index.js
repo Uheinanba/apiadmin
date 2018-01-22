@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Popconfirm } from 'antd';
+import { Table, Popconfirm, Layout } from 'antd';
 import EditableCell from './EditableCell';
 const data = [];
 for (let i = 0; i < 100; i++) {
@@ -105,7 +105,14 @@ class EditableTable extends Component {
   }
   render() {
     return (
-      <Table bordered dataSource={this.state.data} columns={this.columns} />
+      <Layout>
+        <Table
+          bordered
+          dataSource={this.state.data}
+          columns={this.columns}
+          style={{ width: '100%' }}
+        />
+      </Layout>
     );
   }
 }

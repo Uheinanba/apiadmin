@@ -3,7 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import MainContainers from './containers/MainContainers';
+import { syncHistoryWithStore } from 'react-router-redux';
+//import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+
+import MainContainer from './containers/MainContainer';
 import configureStore from './redux/configureStore';
 
 import './assets/App.css';
@@ -15,9 +18,7 @@ class App extends React.Component {
     return (
       <Router>
         <Provider store={store}>
-          <div>
-            <MainContainers />
-          </div>
+          <MainContainer />
         </Provider>
       </Router>
     );

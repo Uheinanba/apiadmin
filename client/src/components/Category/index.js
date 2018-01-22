@@ -1,48 +1,24 @@
 import './Category.less';
 import React, { Component } from 'react';
-import { Card, Col, Row } from 'antd';
+import { Link } from 'react-router-dom';
+import { Card } from 'antd';
 
 class Api extends Component {
   render() {
+    const data = this.props.data;
     return (
-      <div style={{ padding: '30px' }} className="m-category">
-        <Row gutter={16} style={{ marginTop: '-10px' }}>
-          <Col span={4}>
-            <Card title="Card title" bordered={false}>
-              Card content
+      <div className="m-category">
+        {data.map(item => (
+          <Link to={`/jsapi/${item.get('_id')}`}>
+            <Card
+              key={item.get('_id')}
+              title="version"
+              bordered={false}
+              style={{ marginLeft: '20px', float: 'left' }}>
+              {item.get('version')}
             </Card>
-          </Col>
-          <Col span={4}>
-            <Card title="Card title" bordered={false}>
-              Card content
-            </Card>
-          </Col>
-          <Col span={4}>
-            <Card title="Card title" bordered={false}>
-              Card content
-            </Card>
-          </Col>
-          <Col span={4}>
-            <Card title="Card title" bordered={false}>
-              Card content
-            </Card>
-          </Col>
-          <Col span={4}>
-            <Card title="Card title" bordered={false}>
-              Card content
-            </Card>
-          </Col>
-          <Col span={4}>
-            <Card title="Card title" bordered={false}>
-              Card content
-            </Card>
-          </Col>
-          <Col span={4} style={{ marginTop: '20px' }}>
-            <Card title="Card title" bordered={false}>
-              Card content
-            </Card>
-          </Col>
-        </Row>
+          </Link>
+        ))}
       </div>
     );
   }

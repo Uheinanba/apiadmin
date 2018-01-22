@@ -23,10 +23,20 @@ api.getCates = async ctx => {
 };
 
 /* apis */
-api.createApi = async ctx => {
-  const { id, api } = ctx.request.body;
+api.getApis = async ctx => {
+  const { id } = ctx.request.body;
   try {
-    await models.api.addApi(id, api);
+    const { apis } = await models.api.getApis(id);
+    config.apiSuccess(ctx, apis);
+  } catch (error) {
+    config.apiError(ctx, error);
+  }
+};
+
+api.createApi = async ctx => {
+  const { id, apis } = ctx.request.body;
+  try {
+    await models.api.addApi(id, apis);
     config.apiSuccess(ctx);
   } catch (error) {
     config.apiError(ctx, error);
