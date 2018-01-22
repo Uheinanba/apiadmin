@@ -45,14 +45,7 @@ class Main extends Component {
         </Sider>
         <Layout>
           <Content style={{ margin: '0 16px' }}>
-            <div
-              className="m-content"
-              style={{
-                padding: 24,
-                minHeight: 360,
-                display: 'flex',
-                width: '100%',
-              }}>
+            <div className="m-content">
               <Route exact path="/cate" component={CategoryContainer} />
               <Route exact path="/jsapi/:id" component={ApiContainer} />
               <Route exact path="/shell" component={TodoContainers} />

@@ -3,8 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { syncHistoryWithStore } from 'react-router-redux';
-//import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
 import MainContainer from './containers/MainContainer';
 import configureStore from './redux/configureStore';
