@@ -1,6 +1,9 @@
 import React from 'react';
 
 import { Modal, Form, Input } from 'antd';
+
+import { fixJSON } from '../../core/utils';
+
 const { TextArea } = Input;
 const FormItem = Form.Item;
 
@@ -42,8 +45,9 @@ const CreatorForm = Form.create()(props => {
             rules: [
               (rule, value, callback, source, options) => {
                 const errors = [];
+                if (!value) return callback(errors);
                 try {
-                  JSON.parse(value);
+                  JSON.parse(fixJSON(value));
                 } catch (e) {
                   errors.push(
                     new Error(value + '不是合法JSON数据', rule.field),
@@ -52,7 +56,12 @@ const CreatorForm = Form.create()(props => {
                 callback(errors);
               },
             ],
-          })(<TextArea rows={4} />)}
+          })(
+            <TextArea
+              autosize={{ minRows: 2, maxRows: 15 }}
+              placeholder="请输入有效的JSON数据"
+            />,
+          )}
         </FormItem>
       </Form>
     </Modal>

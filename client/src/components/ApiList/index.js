@@ -1,7 +1,12 @@
-import React, { Component } from 'react';
-import { Table, Popconfirm, Layout } from 'antd';
 import EditableCell from './EditableCell';
-const data = [];
+import { fixJSON } from '../../core/utils';
+
+import React, { Component } from 'react';
+import _ from 'lodash';
+import { Table, Popconfirm, Layout, Button } from 'antd';
+const ButtonGroup = Button.Group;
+
+/* const data = [];
 for (let i = 0; i < 100; i++) {
   data.push({
     key: i.toString(),
@@ -9,7 +14,7 @@ for (let i = 0; i < 100; i++) {
     age: 32,
     address: `London Park no. ${i}`,
   });
-}
+} */
 
 class EditableTable extends Component {
   constructor(props) {
@@ -18,20 +23,18 @@ class EditableTable extends Component {
       {
         title: 'name',
         dataIndex: 'name',
-        width: '25%',
         render: (text, record) => this.renderColumns(text, record, 'name'),
       },
       {
-        title: 'age',
-        dataIndex: 'age',
-        width: '15%',
-        render: (text, record) => this.renderColumns(text, record, 'age'),
+        title: 'action',
+        dataIndex: 'action',
+        render: (text, record) => this.renderColumns(text, record, 'action'),
       },
       {
-        title: 'address',
-        dataIndex: 'address',
+        title: 'list',
+        dataIndex: 'list',
         width: '40%',
-        render: (text, record) => this.renderColumns(text, record, 'address'),
+        render: (text, record) => this.renderColumns(text, record, 'list'),
       },
       {
         title: 'operation',
@@ -41,30 +44,57 @@ class EditableTable extends Component {
           return (
             <div className="editable-row-operations">
               {editable ? (
-                <span>
-                  <a onClick={() => this.save(record.key)}>Save</a>
-                  <Popconfirm
-                    title="Sure to cancel?"
-                    onConfirm={() => this.cancel(record.key)}>
-                    <a>Cancel</a>
-                  </Popconfirm>
-                </span>
+                <ButtonGroup>
+                  <Button type="primary" onClick={() => this.save(record.key)}>
+                    保存
+                  </Button>
+                  <Button
+                    type="primary"
+                    onClick={() => this.cancel(record.key)}>
+                    取消
+                  </Button>
+                </ButtonGroup>
               ) : (
-                <a onClick={() => this.edit(record.key)}>Edit</a>
+                <ButtonGroup>
+                  <Button type="primary" onClick={() => this.edit(record.key)}>
+                    修改
+                  </Button>
+
+                  <Popconfirm
+                    okText="确定"
+                    cancelText="取消"
+                    title="确定删除吗?"
+                    onConfirm={() => this.delete(record.key)}>
+                    <Button type="primary">删除</Button>
+                  </Popconfirm>
+                </ButtonGroup>
               )}
             </div>
           );
         },
       },
     ];
-    this.state = { data };
-    this.cacheData = data.map(item => ({ ...item }));
+    this.state = { data: [] };
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEmpty(nextProps.data)) {
+      console.log(nextProps.data);
+      let data = nextProps.data.map(item => {
+        item.key = item._id;
+        return item;
+      });
+      this.setState({ data });
+      this.cacheData = data.map(item => ({ ...item }));
+    }
+  }
+
   renderColumns(text, record, column) {
+    const vtext = typeof text === 'object' ? JSON.stringify(text) : text;
     return (
       <EditableCell
         editable={record.editable}
-        value={text}
+        value={vtext}
         onChange={value => this.handleChange(value, record.key, column)}
       />
     );
@@ -85,14 +115,13 @@ class EditableTable extends Component {
       this.setState({ data: newData });
     }
   }
+  delete(key) {
+    this.props.onDelete(key);
+  }
   save(key) {
-    const newData = [...this.state.data];
-    const target = newData.filter(item => key === item.key)[0];
-    if (target) {
-      delete target.editable;
-      this.setState({ data: newData });
-      this.cacheData = newData.map(item => ({ ...item }));
-    }
+    let target = _.find(this.state.data, item => key === item.key);
+    target.list = JSON.parse(fixJSON(target.list));
+    this.props.onUpdate(key, _.pick(target, ['action', 'list', 'name']));
   }
   cancel(key) {
     const newData = [...this.state.data];
@@ -108,6 +137,7 @@ class EditableTable extends Component {
       <Layout>
         <Table
           bordered
+          pagination={false}
           dataSource={this.state.data}
           columns={this.columns}
           style={{ width: '100%' }}

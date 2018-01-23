@@ -2,6 +2,7 @@ import './ApiCreator.less';
 import React, { Component } from 'react';
 import { Button, Layout } from 'antd';
 import ApiCreatorForm from './ApiCreatorForm';
+import { fixJSON } from '../../core/utils';
 
 const { Header } = Layout;
 
@@ -19,9 +20,11 @@ class apiCreator extends Component {
     const form = this.form;
     form.validateFields((err, values) => {
       if (err) return;
-      console.log('Received values of form: ', values);
       form.resetFields();
       this.setState({ visible: false });
+      console.log(values.list, fixJSON(values.list));
+      const parsedValue = JSON.parse(fixJSON(values.list));
+      values.list = values.list ? [parsedValue] : [];
       this.props.onCreate(values);
     });
   };

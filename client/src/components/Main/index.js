@@ -1,6 +1,6 @@
 import './Main.less';
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Redirect, Switch, Route } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 import TodoContainers from '../../containers/TodoContainers';
 import CategoryContainer from '../../containers/CategoryContainer';
@@ -46,9 +46,12 @@ class Main extends Component {
         <Layout>
           <Content style={{ margin: '0 16px' }}>
             <div className="m-content">
-              <Route exact path="/cate" component={CategoryContainer} />
-              <Route exact path="/jsapi/:id" component={ApiContainer} />
-              <Route exact path="/shell" component={TodoContainers} />
+              <Switch>
+                <Route exact path="/cate" component={CategoryContainer} />
+                <Route path="/jsapi/:id" component={ApiContainer} />
+                <Route path="/shell" component={TodoContainers} />
+                <Redirect to="/cate" />
+              </Switch>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
