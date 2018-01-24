@@ -1,19 +1,37 @@
-const request = require('request');
+#!/usr/bin/env node
 
-/**
- 通过下载到本地 执行
-  ssh.exec('cat > /path/to/remote/file', {
-    in: fs.readFileSync('/path/to/local/file')
-  }).start();
-  下载到远程的文件中。
- */
-const requestToLocal = (url, path) => {
-  return request(url, path);
+const execShCmd = (ssh, cmd) =>
+  new Promise((resolve, reject) => {
+    ssh.on('error', function(err) {
+      reject(err);
+      ssh.end();
+    });
+    ssh
+      .exec(cmd, {
+        out: stdout => console.log(stdout),
+        exit: code => code === 0 && resolve(),
+        err: stderr => reject(stderr),
+      })
+      .start();
+  });
+
+const shAuth = ssh =>
+  new Promise((resolve, reject) => {
+    ssh
+      .on('error', error => {
+        console.log('失败', error);
+        reject(error);
+        ssh.end();
+      })
+      .on('ready', () => {
+        console.log('成功');
+        resolve();
+      })
+      .exec('pwd')
+      .start();
+  });
+
+module.exports = {
+  execShCmd,
+  shAuth,
 };
-
-/* request('https://www.baidu.com', function(error, response, body) {
-  if (!error && response.statusCode == 200) {
-    console.log(body); //请求百度首页，返回的Html数据
-  }
-});
- */

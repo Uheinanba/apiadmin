@@ -4,6 +4,7 @@ import { createLogger } from 'redux-logger';
 import Immutable from 'immutable';
 import thunk from 'redux-thunk';
 
+import prod from './modules/prod';
 import cate from './modules/cate';
 import jsapi from './modules/jsapi';
 
@@ -14,6 +15,7 @@ const createStoreWithMiddleware = applyMiddleware(thunk, loggerMiddleware)(
 );
 
 const reducer = combineReducers({
+  prod,
   cate,
   jsapi,
 });

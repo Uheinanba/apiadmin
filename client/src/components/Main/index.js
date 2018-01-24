@@ -17,9 +17,6 @@ class Main extends Component {
   onCollapse = collapsed => {
     this.setState({ collapsed });
   };
-  componentDidMount = () => {
-    console.log(this);
-  };
 
   render() {
     const collapsed = this.state.collapsed;

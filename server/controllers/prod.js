@@ -1,18 +1,25 @@
 const config = require('../config');
+const utils = require('../core/utils');
 const SSH = require('simple-ssh');
 
+let ssh;
 const prods = {
   updateJsapiLib: async ctx => {
-    ssh
-      .on('error', function(error) {
-        console.log('连接失败', error);
-        config.apiError(ctx, error);
-        ssh.end();
-      })
-      .on('ready', () => {
-        config.apiSuccess(ctx);
-        console.log('ssh连接成功');
-      });
+    const { name, password, path } = ctx.request.body;
+    const ssh = new SSH({
+      host: 'firstshare.co',
+      user: name,
+      pass: password,
+    });
+    try {
+      await utils.execShCmd(
+        ssh,
+        'node /home/fxiaoke/weex-debuger/bin/release --path=http://www.fxiaoke.com/open/jsapi/2.1.7/fsapi.min.js',
+      );
+      config.apiSuccess(ctx);
+    } catch (error) {
+      config.apiError(ctx, error);
+    }
   },
 };
 

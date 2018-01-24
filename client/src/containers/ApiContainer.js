@@ -13,7 +13,6 @@ import {
 
 class ApiContainer extends Component {
   componentWillMount = () => {
-    console.log(3434);
     const params = this.props.match.params;
     this.props.fetchApis(params.id);
   };

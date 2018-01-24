@@ -22,7 +22,6 @@ class apiCreator extends Component {
       if (err) return;
       form.resetFields();
       this.setState({ visible: false });
-      console.log(values.list, fixJSON(values.list));
       const parsedValue = JSON.parse(fixJSON(values.list));
       values.list = values.list ? [parsedValue] : [];
       this.props.onCreate(values);

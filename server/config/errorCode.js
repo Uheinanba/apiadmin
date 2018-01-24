@@ -20,4 +20,11 @@ module.exports = {
             data: null,
           };
   },
+  connectError: (ctx, error) => {
+    ctx.body = {
+      errCode: -2001,
+      errMsg: error,
+      data: null,
+    };
+  },
 };

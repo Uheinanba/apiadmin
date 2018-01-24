@@ -8,10 +8,8 @@ class ShellContainers extends Component {
 
   render() {
     return (
-      <Card title="远程管理">
-        <Card type="inner" title="Inner Card title">
-          <ProdApiForm />
-        </Card>
+      <Card title="发布管理">
+        <ProdApiForm />
       </Card>
     );
   }

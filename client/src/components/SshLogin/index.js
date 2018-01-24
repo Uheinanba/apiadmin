@@ -1,14 +1,12 @@
-import './CateCreator.less';
 import React, { Component } from 'react';
-import { Icon } from 'antd';
-import CateCreatorForm from './CateCreatorForm';
+import { Button, Modal, Form, Input } from 'antd';
+import LoginForm from './LoginForm';
 
-class CateCreator extends Component {
+const FormItem = Form.Item;
+
+class CollectionsPage extends Component {
   state = {
     visible: false,
-  };
-  showModal = () => {
-    this.setState({ visible: true });
   };
   handleCancel = () => {
     this.setState({ visible: false });
@@ -16,23 +14,26 @@ class CateCreator extends Component {
   handleCreate = () => {
     const form = this.form;
     form.validateFields((err, values) => {
-      if (err) return;
+      if (err) {
+        return;
+      }
       form.resetFields();
       this.setState({ visible: false });
-      this.props.onCreate(values);
     });
   };
   saveFormRef = form => {
     this.form = form;
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.visible || this.props.visible)
+      this.setState({ visible: true });
+  }
+
   render() {
     return (
       <div>
-        <div className="m-cate__creator" onClick={this.showModal}>
-          <Icon type="file-add" />
-        </div>
-        <CateCreatorForm
+        <LoginForm
           ref={this.saveFormRef}
           visible={this.state.visible}
           onCancel={this.handleCancel}
@@ -43,4 +44,4 @@ class CateCreator extends Component {
   }
 }
 
-export default CateCreator;
+export default CollectionsPage;
