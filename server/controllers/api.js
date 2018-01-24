@@ -4,7 +4,7 @@ const config = require('../config');
 
 const apis = {
   /* cate  */
-  createCate = async ctx => {
+  createCate: async ctx => {
     try {
       await apiModel.addCate(ctx.request.body);
       config.apiSuccess(ctx);
@@ -13,7 +13,7 @@ const apis = {
     }
   },
 
-  getCates = async ctx => {
+  getCates: async ctx => {
     try {
       // ctx.request.body.version
       const data = await apiModel.getCates();
@@ -24,7 +24,7 @@ const apis = {
   },
 
   /* apis */
-  getApis = async ctx => {
+  getApis: async ctx => {
     const { id } = ctx.request.body;
     try {
       const { apis } = await models.api.getApis(id);
@@ -34,7 +34,7 @@ const apis = {
     }
   },
 
-  createApi = async ctx => {
+  createApi: async ctx => {
     const { id, apis } = ctx.request.body;
     try {
       await models.api.addApi(id, apis);
@@ -44,7 +44,7 @@ const apis = {
     }
   },
 
-  deleteApi = async ctx => {
+  deleteApi: async ctx => {
     const { id, apiId } = ctx.request.body;
     try {
       await models.api.deleteApi(id, apiId);
@@ -54,7 +54,7 @@ const apis = {
     }
   },
 
-  updateApi = async ctx => {
+  updateApi: async ctx => {
     const { id, apiId, data } = ctx.request.body;
     try {
       await models.api.updateApi(id, apiId, data);
@@ -63,7 +63,6 @@ const apis = {
       config.apiError(ctx, error);
     }
   },
-
 };
 
 module.exports = apis;

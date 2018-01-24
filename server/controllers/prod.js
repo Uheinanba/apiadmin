@@ -1,7 +1,7 @@
 const config = require('../config');
 const SSH = require('simple-ssh');
 
-const shells = {
+const prods = {
   updateJsapiLib = async ctx => {
     ssh
     .on('error', function(error) {
@@ -16,4 +16,4 @@ const shells = {
   }
 };
 
-module.exports = shells;
+module.exports = prods;

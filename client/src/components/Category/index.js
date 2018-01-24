@@ -9,7 +9,7 @@ class Api extends Component {
     return (
       <Card title="jsapi组">
         {data.map(item => (
-          <Link to={`/jsapi/${item.get('_id')}`} key={item.get('_id')}>
+          <Link to={`/api/${item.get('_id')}`} key={item.get('_id')}>
             <Card
               className="ant-card-grid"
               key={item.get('_id')}

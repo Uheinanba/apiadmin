@@ -9,7 +9,7 @@ _.each(fs.readdirSync(config.route), filename => {
   if (filename === 'index.js' || filename.indexOf('.js') === -1) return false;
   try {
     const modelName = filename.split('.')[0];
-    routes = _.concat(routes, require(path.join(config.model, filename)));
+    routes = _.concat(routes, require(path.join(config.route, filename)));
   } catch (error) {
     console.error(error);
   }

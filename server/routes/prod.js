@@ -1,8 +1,8 @@
 module.exports = [
   {
     method: 'post',
-    url: '/api/shell/updateJsapiLib',
-    ctrl: 'shell',
+    url: '/api/prod/updateJsapiLib',
+    ctrl: 'prod',
     handle: 'updateJsapiLib',
   },
 ];

@@ -1,3 +1,3 @@
 import './cate';
 import './jsapi';
-import './shell';
+import './prod';
