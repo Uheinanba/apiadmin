@@ -6,22 +6,18 @@ import { Spin } from 'antd';
 import { fetchCate, addCate } from '../redux/modules/cate';
 
 class CategoryContainers extends Component {
-  handleCreate = data => {
-    this.props.addCate(data);
-  };
-
   componentWillMount = () => {
     this.props.fetchCate();
   };
 
   render() {
-    const { spinning, cates } = this.props;
+    const { spinning, cates, addCate } = this.props;
     return (
       <div style={{ width: '100%', height: '100%' }}>
         <Spin tip="加载中..." spinning={spinning}>
           <Category data={cates} />
         </Spin>
-        <CateCreator onCreate={this.handleCreate} />
+        <CateCreator onCreate={data => addCate(data)} />
       </div>
     );
   }

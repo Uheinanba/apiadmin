@@ -79,7 +79,6 @@ class EditableTable extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (!_.isEmpty(nextProps.data)) {
-      console.log(nextProps.data);
       let data = nextProps.data.map(item => {
         item.key = item._id;
         return item;

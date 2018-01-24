@@ -1,4 +1,4 @@
-import './core/service/api';
+import './core/api';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';

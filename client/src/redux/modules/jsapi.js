@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import _ from 'lodash';
+// import _ from 'lodash';
 import apis from '../../core/service/apis';
 
 const GET_APIS_SUCCESS = 'GET_APIS_SUCCESS';

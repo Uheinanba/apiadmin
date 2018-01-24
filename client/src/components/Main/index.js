@@ -2,7 +2,7 @@ import './Main.less';
 import React, { Component } from 'react';
 import { Link, Redirect, Switch, Route } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
-import TodoContainers from '../../containers/TodoContainers';
+import ShellContainer from '../../containers/ShellContainer';
 import CategoryContainer from '../../containers/CategoryContainer';
 import ApiContainer from '../../containers/ApiContainer';
 
@@ -49,13 +49,13 @@ class Main extends Component {
               <Switch>
                 <Route exact path="/cate" component={CategoryContainer} />
                 <Route path="/jsapi/:id" component={ApiContainer} />
-                <Route path="/shell" component={TodoContainers} />
+                <Route path="/shell" component={ShellContainer} />
                 <Redirect to="/cate" />
               </Switch>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2016 Created by Ant UED
+            JsApi Admin @2018 Created by Fxiaoke FE
           </Footer>
         </Layout>
       </Layout>

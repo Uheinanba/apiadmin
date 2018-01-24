@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import _ from 'lodash';
+// import _ from 'lodash';
 import apis from '../../core/service/apis';
 
 const ADD_CATE_SUCCESS = 'ADD_CATE_SUCCESS';
@@ -50,14 +50,13 @@ export const fetchCate = () => async dispatch => {
 
 export default (state = initState, action) => {
   switch (action.type) {
-    case ADD_CATE_SUCCESS:
-      return state;
     case GET_CATES_REQUEST:
       return state.set('getCateStatus', 'request');
     case GET_CATES_SUCCESS:
       return state.merge({ cates: action.payload, getCateStatus: 'success' });
     case GET_CATES_ERROR:
       return state.set('getCateStatus', 'error');
+    case ADD_CATE_SUCCESS:
     default:
       return state;
   }

@@ -7,4 +7,4 @@ export const fixJSON = value =>
   value
     .replace(/\s/g, '')
     .replace(/'/g, '"')
-    .replace(/(\w+\:)/g, (g, m1) => `"${m1.slice(0, m1.length - 1)}":`);
+    .replace(/(\w+\:)/g, (g, m1) => `"${m1.slice(0, m1.length - 1)}":`); // eslint-disable-line

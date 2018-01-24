@@ -7,19 +7,20 @@ class Api extends Component {
   render() {
     const data = this.props.data;
     return (
-      <div className="m-category">
+      <Card title="jsapi组">
         {data.map(item => (
-          <Link to={`/jsapi/${item.get('_id')}`}>
+          <Link to={`/jsapi/${item.get('_id')}`} key={item.get('_id')}>
             <Card
+              className="ant-card-grid"
               key={item.get('_id')}
               title="version"
               bordered={false}
-              style={{ marginLeft: '20px', float: 'left' }}>
+              style={{ width: '20%', textAlign: 'center' }}>
               {item.get('version')}
             </Card>
           </Link>
         ))}
-      </div>
+      </Card>
     );
   }
 }

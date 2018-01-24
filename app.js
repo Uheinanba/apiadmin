@@ -5,7 +5,7 @@ const json = require('koa-json');
 const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser');
 const logger = require('koa-logger');
-const bootstrap = require('./server/bootstrap');
+const bootstrap = require('./server/index');
 
 // const index = require('./server/routes/index');
 // const users = require('./server/routes/users');

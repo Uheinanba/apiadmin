@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Layout } from 'antd';
 
@@ -18,7 +17,7 @@ class ApiContainer extends Component {
     this.props.fetchApis(params.id);
   };
   render() {
-    const { spinning, apis, deleteApi, updateApi, addApi, match } = this.props;
+    const { apis, deleteApi, updateApi, addApi, match } = this.props;
     const id = match.params.id;
     return (
       <Layout>

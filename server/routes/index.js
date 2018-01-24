@@ -1,16 +1,18 @@
-const router = require('koa-router')();
-const ctrls = require('../controllers/cate');
+const fs = require('fs');
+const _ = require('lodash');
+const path = require('path');
+const config = require('../config');
 
-router.get('/', ctrls.indexCtrl);
+let routes = [];
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string';
+_.each(fs.readdirSync(config.route), filename => {
+  if (filename === 'index.js' || filename.indexOf('.js') === -1) return false;
+  try {
+    const modelName = filename.split('.')[0];
+    routes = _.concat(routes, require(path.join(config.model, filename)));
+  } catch (error) {
+    console.error(error);
+  }
 });
 
-router.get('/json', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json',
-  };
-});
-
-module.exports = router;
+module.exports = routes;
