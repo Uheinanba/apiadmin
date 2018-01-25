@@ -16,7 +16,7 @@ const CollectionCreateForm = Form.create()(props => {
       onCancel={onCancel}
       onOk={onCreate}>
       <Form layout="vertical">
-        <FormItem label="Username">
+        <FormItem label="用户名">
           {getFieldDecorator('username', {
             rules: [
               {
@@ -26,7 +26,7 @@ const CollectionCreateForm = Form.create()(props => {
             ],
           })(<Input />)}
         </FormItem>
-        <FormItem label="PassWord">
+        <FormItem label="密码">
           {getFieldDecorator('password', {
             rules: [
               {

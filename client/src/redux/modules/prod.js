@@ -9,24 +9,24 @@ const initState = Map({
   auth: {},
 });
 
-export const getSshAuth = payload => ({
+export const getAuth = payload => ({
   type: GET_SSH_AUTH,
   payload,
 });
 
-export const successAddJsapiLib = () => ({
+export const successUpdateJsapiLib = () => ({
   type: UPDATE_JSAPI_LIB_SUCCESS,
 });
 
 /* 登陆 */
-export const sshLogin = payload => dispatch => {
-  dispatch(getSshAuth(payload));
+export const aliLogin = payload => dispatch => {
+  dispatch(getAuth(payload));
 };
 
-export const addCate = payload => async dispatch => {
+export const updateJsapiLib = payload => async dispatch => {
   try {
     await apis.updateJsapiLib({ data: payload });
-    dispatch(successAddJsapiLib());
+    dispatch(successUpdateJsapiLib());
   } catch (error) {}
 };
 

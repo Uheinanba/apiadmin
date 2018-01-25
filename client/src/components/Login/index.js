@@ -14,9 +14,8 @@ class CollectionsPage extends Component {
   handleCreate = () => {
     const form = this.form;
     form.validateFields((err, values) => {
-      if (err) {
-        return;
-      }
+      if (err) return;
+      this.props.onLogin(values);
       form.resetFields();
       this.setState({ visible: false });
     });

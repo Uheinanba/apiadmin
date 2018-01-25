@@ -5,10 +5,10 @@ const SSH = require('simple-ssh');
 let ssh;
 const prods = {
   updateJsapiLib: async ctx => {
-    const { name, password, path } = ctx.request.body;
+    const { username, password, path } = ctx.request.body;
     const ssh = new SSH({
       host: 'firstshare.co',
-      user: name,
+      user: username,
       pass: password,
     });
     try {

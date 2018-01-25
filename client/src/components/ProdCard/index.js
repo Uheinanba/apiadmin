@@ -3,7 +3,7 @@ import ProdApiForm from '../ProdApiForm';
 import React, { Component } from 'react';
 import { Card } from 'antd';
 
-class ShellContainers extends Component {
+class ProdCard extends Component {
   componentWillMount() {}
 
   render() {
@@ -15,4 +15,4 @@ class ShellContainers extends Component {
   }
 }
 
-export default ShellContainers;
+export default ProdCard;

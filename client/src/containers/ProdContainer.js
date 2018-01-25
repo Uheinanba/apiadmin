@@ -3,24 +3,23 @@ import { Layout } from 'antd';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
-import { sshLogin } from '../redux/modules/prod';
-import ProdList from '../components/ProdList';
-import SshLogin from '../components/SshLogin';
+import { aliLogin, updateJsapiLib } from '../redux/modules/prod';
+import ProdCard from '../components/ProdCard';
+import NoAuth from '../components/NoAuth';
+import Login from '../components/Login';
 
 class ProdContainer extends Component {
-  componentWillReceiveProps(nextProps) {
-    _.isEmpty(nextProps.auth);
-    console.log(nextProps);
-  }
-
   render() {
-    const hasAuth = _.isEmpty(this.props.auth);
-    return hasAuth ? (
+    const { aliLogin, auth } = this.props;
+    return (
       <Layout>
-        <ProdList />
-        <SshLogin visible={true} />
+        {_.isEmpty(auth) ? (
+          <NoAuth onLogin={data => aliLogin(data)} />
+        ) : (
+          <ProdCard onUpdateJsapi={auth => updateJsapiLib(auth)} />
+        )}
       </Layout>
-    ) : null;
+    );
   }
 }
 
@@ -32,7 +31,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    sshLogin: data => dispatch(sshLogin(data)),
+    aliLogin: data => dispatch(aliLogin(data)),
+    updateJsapiLib: data => dispatch(updateJsapiLib(data)),
   };
 };
 
