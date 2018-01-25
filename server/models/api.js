@@ -19,6 +19,10 @@ module.exports = {
     return Api.findById(id);
   },
 
+  getApiList() {
+    return Api.find().exec();
+  },
+
   addApi(id, apis) {
     return Api.findByIdAndUpdate(
       id,

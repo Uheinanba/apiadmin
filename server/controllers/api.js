@@ -23,6 +23,15 @@ const apis = {
     }
   },
 
+  getApiList: async ctx => {
+    try {
+      const list = await models.api.getApiList();
+      config.apiSuccess(ctx, list);
+    } catch (error) {
+      config.apiError(ctx, error);
+    }
+  },
+
   /* apis */
   getApis: async ctx => {
     const { id } = ctx.request.body;

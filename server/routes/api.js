@@ -1,5 +1,11 @@
 module.exports = [
   {
+    method: 'get',
+    url: '/api/list',
+    ctrl: 'api',
+    handle: 'getApiList',
+  },
+  {
     method: 'post',
     url: '/api/createCate',
     ctrl: 'api',
