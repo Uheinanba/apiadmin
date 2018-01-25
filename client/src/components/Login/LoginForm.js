@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Button, Modal, Form, Input } from 'antd';
+import React from 'react';
+import { Modal, Form, Input } from 'antd';
 const FormItem = Form.Item;
 
 const CollectionCreateForm = Form.create()(props => {
@@ -7,7 +7,6 @@ const CollectionCreateForm = Form.create()(props => {
   const { getFieldDecorator } = form;
   return (
     <Modal
-      closable={false}
       closable={false}
       visible={visible}
       title="登陆到云端服务器"

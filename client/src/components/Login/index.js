@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, Form, Input } from 'antd';
 import LoginForm from './LoginForm';
-
-const FormItem = Form.Item;
 
 class CollectionsPage extends Component {
   state = {

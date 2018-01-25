@@ -8,7 +8,7 @@ import { firstLetteUpperCase } from '../utils';
 import apis from './apis';
 
 // default config
-axios.defaults.timeout = 15000;
+axios.defaults.timeout = 25000;
 axios.defaults.headers.Accept = 'application/json';
 axios.defaults.headers['content-type'] = 'application/json; charset=UTF-8';
 
@@ -74,15 +74,18 @@ const fetch = args => (resolve, reject) => {
       };
 
       return +data.errCode === SUCCESS_BUZ_CODE
-        ? dataCheck // 处理 是否有参数dataCheck情况
+        ? _handleSuccssFetch()
+        : /* dataCheck // 处理 是否有参数dataCheck情况
           ? _[`is${firstLetteUpperCase(dataCheck)}`](data.data) // 使用lodash进行检查
             ? _handleSuccssFetch()
             : _handleErrorFetch()
-          : _handleSuccssFetch() // 没有dataCheck直接返回成功
-        : _handleErrorFetch();
+          : _handleSuccssFetch() // 没有dataCheck直接返回成功 */
+          _handleErrorFetch();
     })
     .catch(error => {
-      wrapHandleErrMsg(error.status, HTTP_TYPE);
+      args.customError
+        ? reject('接口调用失败')
+        : wrapHandleErrMsg(error.status, HTTP_TYPE);
     });
 };
 

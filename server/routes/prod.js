@@ -5,4 +5,10 @@ module.exports = [
     ctrl: 'prod',
     handle: 'updateJsapiLib',
   },
+  {
+    method: 'post',
+    url: '/api/prod/execBuildCmd',
+    ctrl: 'prod',
+    handle: 'execBuildCmd',
+  },
 ];

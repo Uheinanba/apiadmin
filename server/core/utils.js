@@ -3,14 +3,14 @@
 const execShCmd = (ssh, cmd) =>
   new Promise((resolve, reject) => {
     ssh.on('error', function(err) {
-      reject(err);
+      reject({ err, type: 0 });
       ssh.end();
     });
     ssh
       .exec(cmd, {
         out: stdout => console.log(stdout),
         exit: code => code === 0 && resolve(),
-        err: stderr => reject(stderr),
+        err: err => reject({ err, type: 1 }),
       })
       .start();
   });

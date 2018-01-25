@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 module.exports = {
   apiSuccess: (ctx, data = null) => {
     ctx.body = {
@@ -20,10 +22,17 @@ module.exports = {
             data: null,
           };
   },
-  connectError: (ctx, error) => {
+  prodAuthError: (ctx, error) => {
     ctx.body = {
       errCode: -2001,
-      errMsg: error,
+      errMsg: _.isPlainObject(error) ? error.message : error,
+      data: null,
+    };
+  },
+  prodCmdError: (ctx, error) => {
+    ctx.body = {
+      errCode: -2002,
+      errMsg: _.isPlainObject(error) ? error.message : error,
       data: null,
     };
   },
