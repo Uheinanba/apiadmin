@@ -4,9 +4,22 @@ import { Redirect, Switch, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import Menu from './Menu';
+import asyncComponent from '../AsyncComponent';
+
+// react-loadable
+const ProdContainer = asyncComponent(() =>
+  import('../../containers/ProdContainer'),
+);
+const CategoryContainer = asyncComponent(() =>
+  import('../../containers/CategoryContainer'),
+);
+const ApiContainer = asyncComponent(() =>
+  import('../../containers/ApiContainer'),
+);
+/* 
 import ProdContainer from '../../containers/ProdContainer';
 import CategoryContainer from '../../containers/CategoryContainer';
-import ApiContainer from '../../containers/ApiContainer';
+import ApiContainer from '../../containers/ApiContainer'; */
 
 const { Content, Footer, Sider } = Layout;
 
