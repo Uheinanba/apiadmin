@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "react-app-rewired build && mv build apiadmin",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-app-rewired eject"
   },
@@ -30,6 +30,7 @@
     "react-app-rewire-less": "^2.1.0",
     "react-app-rewired": "^1.4.0"
   },
+  "homepage": "./",
   "proxy": {
     "/api": {
       "target": "http://127.0.0.1:4100"

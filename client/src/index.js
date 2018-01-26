@@ -2,7 +2,7 @@ import './core/api';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 
 import MainContainer from './containers/MainContainer';
 import configureStore from './redux/configureStore';
