@@ -110,7 +110,7 @@ class EditableTable extends Component {
   save(key) {
     let target = _.find(this.state.data, item => key === item.key);
     try {
-      target.list = JSON.parse(fixJSON(target.list));
+      target.list = fixJSON(target.list);
       this.props.onUpdate(key, _.pick(target, ['action', 'list', 'name']));
     } catch (error) {
       notification.error({

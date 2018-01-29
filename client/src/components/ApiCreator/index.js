@@ -22,7 +22,7 @@ class apiCreator extends Component {
       if (err) return;
       form.resetFields();
       this.setState({ visible: false });
-      const parsedValue = JSON.parse(fixJSON(values.list));
+      const parsedValue = fixJSON(values.list);
       values.list = values.list ? [parsedValue] : [];
       this.props.onCreate(values);
     });
