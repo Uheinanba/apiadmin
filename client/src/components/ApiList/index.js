@@ -3,18 +3,8 @@ import { fixJSON } from '../../core/utils';
 
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { Table, Popconfirm, Layout, Button } from 'antd';
+import { Table, Popconfirm, Layout, Button, notification } from 'antd';
 const ButtonGroup = Button.Group;
-
-/* const data = [];
-for (let i = 0; i < 100; i++) {
-  data.push({
-    key: i.toString(),
-    name: `Edrward ${i}`,
-    age: 32,
-    address: `London Park no. ${i}`,
-  });
-} */
 
 class EditableTable extends Component {
   constructor(props) {
@@ -119,8 +109,15 @@ class EditableTable extends Component {
   }
   save(key) {
     let target = _.find(this.state.data, item => key === item.key);
-    target.list = JSON.parse(fixJSON(target.list));
-    this.props.onUpdate(key, _.pick(target, ['action', 'list', 'name']));
+    try {
+      target.list = JSON.parse(fixJSON(target.list));
+      this.props.onUpdate(key, _.pick(target, ['action', 'list', 'name']));
+    } catch (error) {
+      notification.error({
+        message: '错误!',
+        description: '请输入正确的JSON格式',
+      });
+    }
   }
   cancel(key) {
     const newData = [...this.state.data];

@@ -47,6 +47,8 @@ const CreatorForm = Form.create()(props => {
                 const errors = [];
                 if (!value) return callback(errors);
                 try {
+                  console.log(value);
+                  console.log(fixJSON(value));
                   JSON.parse(fixJSON(value));
                 } catch (e) {
                   errors.push(

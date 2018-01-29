@@ -4,7 +4,6 @@ import _ from 'lodash';
 import axios from 'axios';
 import { message, notification } from 'antd';
 
-import { firstLetteUpperCase } from '../utils';
 import apis from './apis';
 
 // default config
@@ -36,12 +35,11 @@ const _handleError = (reject, method) => (code, type = BUZ_TYPE) => {
  *
  * args.customError(boolean): 是否自定义返回错误处理
  * args.successMsg(string): 接口调用成功的是否进行通用处理
- * args.dataCheck(string): 对返回值进行数据类型判断
  *
  */
 const fetch = args => (resolve, reject) => {
   const wrapHandleErrMsg = _handleError(reject, args.method);
-  const { successMsg, dataCheck } = args;
+  const { successMsg } = args;
   const method = args.type || 'post';
 
   const baseArgs = {
